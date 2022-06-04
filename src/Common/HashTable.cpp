@@ -2,27 +2,27 @@
 
 Common::HashTable::HashTable() {
   for (int i = 0; i < TABLE_SIZE; i++) {
-    this->table[i] = new LinkedList<std::string>();
+    this->table[i] = new LinkedList<HashBlock>();
   }
 }
 
-unsigned int Common::HashTable::hash(std::string value) {
-  unsigned int key = 0;
+unsigned int Common::HashTable::hash(std::string key, std::string value) {
+  unsigned int hash = 0;
 
   for (int i = 0; i < value.size(); i++) {
-    key += value[i];
-    key += key * value[i];
-    key = key % TABLE_SIZE;
+    hash += key[i];
+    hash += hash * key[i];
+    hash = hash % TABLE_SIZE;
   }
 
-  this->table[key]->create_node(value);
+  this->table[hash]->create_node({ key, value });
 
-  return key;
+  return hash;
 }
 
-void Common::HashTable::for_each(std::function<void(std::string, int)> callback) {
+void Common::HashTable::for_each(std::function<void(HashBlock, int)> callback) {
   for (int i = 0; i < TABLE_SIZE; i++) {
-    this->table[i]->for_each([&](Node<std::string>* node) -> void {
+    this->table[i]->for_each([&](Node<HashBlock>* node) -> void {
       callback(node->data, i);
     });
   }

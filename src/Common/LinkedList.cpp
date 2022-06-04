@@ -1,6 +1,9 @@
 #include "LinkedList.h"
+#include "hash_types.h"
 
+template class Common::LinkedList<int>;
 template class Common::LinkedList<std::string>;
+template class Common::LinkedList<HashBlock>;
 
 template<typename T>
 Common::Node<T>* Common::LinkedList<T>::create_node(T data) {

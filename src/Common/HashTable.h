@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <functional>
+#include "hash_types.h"
 #include "LinkedList.h"
 
 #define TABLE_SIZE 100
@@ -12,11 +13,11 @@ class HashTable {
 public:
   HashTable();
 
-  unsigned int hash(std::string data);
-  void for_each(std::function<void(std::string, int)> callback);
+  unsigned int hash(std::string key, std::string value);
+  void for_each(std::function<void(HashBlock, int)> callback);
 
 private:
-  LinkedList<std::string>* table[TABLE_SIZE] = {};
+  LinkedList<HashBlock>* table[TABLE_SIZE] = {};
 };
 
 }

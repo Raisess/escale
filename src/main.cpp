@@ -1,15 +1,17 @@
 #include <iostream>
 #include "Common/LinkedList.h"
+#include "Common/HashTable.h"
 
 int main() {
-  Common::LinkedList<int>* linked_list = new Common::LinkedList<int>();
+  Common::HashTable* hash_table = new Common::HashTable();
 
-  linked_list->create_node(1);
-  linked_list->create_node(2);
-  linked_list->create_node(3);
+  std::cout << "Test: " << hash_table->hash("Test") << std::endl;
+  std::cout << "Test2: " << hash_table->hash("Test2") << std::endl;
+  std::cout << "Test2: " << hash_table->hash("Test2") << std::endl;
+  std::cout << "Danilo: " << hash_table->hash("Danilo") << std::endl;
 
-  linked_list->for_each([](Common::Node<int>* node) -> void {
-    std::cout << node->data << std::endl;
+  hash_table->for_each([](std::string value, int table_key) -> void {
+    std::cout << table_key << ": " << value << std::endl;
   });
 
   return 0;

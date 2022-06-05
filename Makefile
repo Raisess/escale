@@ -1,9 +1,9 @@
 CC=g++
 
 SRC_DIR=./src
-SRC_FILES=$(SRC_DIR)/main.cpp \
-					$(SRC_DIR)/Common/LinkedList.cpp \
-					$(SRC_DIR)/Common/HashTable.cpp
+SRC_FILES=$(SRC_DIR)/core/main.cpp \
+					$(SRC_DIR)/core/Common/LinkedList.cpp \
+					$(SRC_DIR)/core/Common/HashTable.cpp
 
 OUT_DIR=./build
 OUT_FILE=$(OUT_DIR)/escale

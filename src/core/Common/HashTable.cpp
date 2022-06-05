@@ -6,18 +6,21 @@ Common::HashTable::HashTable() {
   }
 }
 
-unsigned int Common::HashTable::hash(std::string key, std::string value) {
+unsigned int Common::HashTable::hash(std::string key) {
   unsigned int hash = 0;
 
-  for (int i = 0; i < value.size(); i++) {
+  for (int i = 0; i < key.size(); i++) {
     hash += key[i];
     hash += hash * key[i];
     hash = hash % TABLE_SIZE;
   }
 
-  this->table[hash]->create_node({ key, value });
-
   return hash;
+}
+
+void Common::HashTable::append(std::string key, std::string value) {
+  unsigned int hash = this->hash(key);
+  this->table[hash]->create_node({ key, value });
 }
 
 void Common::HashTable::for_each(std::function<void(HashBlock, int)> callback) {
@@ -26,4 +29,17 @@ void Common::HashTable::for_each(std::function<void(HashBlock, int)> callback) {
       callback(node->data, i);
     });
   }
+}
+
+HashBlock Common::HashTable::find(std::string key) {
+  unsigned int hash = this->hash(key);
+  HashBlock hash_block;
+
+  this->table[hash]->for_each([&](Node<HashBlock>* node) -> void {
+    if (node->data.key == key) {
+      hash_block = node->data;
+    }
+  });
+
+  return hash_block;
 }

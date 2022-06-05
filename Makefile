@@ -1,4 +1,5 @@
 CC=g++
+FLAGS=-Wno-deprecated
 
 SRC_DIR=./src
 SRC_FILES=$(SRC_DIR)/core/main.cpp \
@@ -12,7 +13,7 @@ OUT_FILE=$(OUT_DIR)/escale
 
 build:
 	mkdir -p $(OUT_DIR)
-	$(CC) $(SRC_FILES) -o $(OUT_FILE)
+	$(CC) $(FLAGS) $(SRC_FILES) -o $(OUT_FILE)
 
 clean:
 	rm -rf $(OUT_DIR)

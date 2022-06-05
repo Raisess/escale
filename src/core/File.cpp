@@ -18,6 +18,6 @@ std::string File::read() {
 
 void File::write(std::string data) {
   this->wfstream.open(this->path);
-  this->wfstream << data << std::endl;
+  this->wfstream << data << "\n";
   this->wfstream.close();
 }

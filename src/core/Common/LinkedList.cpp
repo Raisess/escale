@@ -25,6 +25,20 @@ Common::Node<T>* Common::LinkedList<T>::create_node(T data) {
 }
 
 template<typename T>
+void Common::LinkedList<T>::remove_node(Node<T>* ptr) {
+  Node<T>* tmp = this->head;
+
+  while (tmp != NULL) {
+    if (tmp->next == ptr) {
+      tmp->next = tmp->next->next;
+      return;
+    }
+
+    tmp = tmp->next;
+  }
+}
+
+template<typename T>
 void Common::LinkedList<T>::for_each(std::function<void(Node<T>*)> callback) {
   Node<T>* tmp = this->head;
 

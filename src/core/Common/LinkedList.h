@@ -20,6 +20,7 @@ template<typename T>
 class LinkedList {
 public:
   Node<T>* create_node(T data);
+  void remove_node(Node<T>* ptr);
   void for_each(std::function<void(Node<T>*)> callback);
 
 private:

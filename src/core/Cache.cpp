@@ -15,9 +15,18 @@ std::string Cache::get(std::string key) {
   return hash_block.value;
 }
 
+void Cache::remove(std::string key) {
+  this->hash_table->remove(key);
+}
+
 unsigned int Cache::ttl(std::string key) {
   HashBlock hash_block = this->hash_table->find(key);
-  unsigned int ttl = hash_block.duration - time(nullptr);
+
+  if (hash_block.key == "") {
+    return 0;
+  }
+
+  unsigned int ttl = hash_block.duration - time(NULL);
   return ttl;
 }
 

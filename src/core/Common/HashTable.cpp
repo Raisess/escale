@@ -20,7 +20,20 @@ unsigned int Common::HashTable::hash(std::string key) {
 
 void Common::HashTable::append(std::string key, std::string value, unsigned long int duration) {
   unsigned int hash = this->hash(key);
-  this->table[hash]->create_node({ key, value, time(nullptr) + duration });
+  this->table[hash]->create_node({ key, value, time(NULL) + duration });
+}
+
+void Common::HashTable::remove(std::string key) {
+  unsigned int hash = this->hash(key);
+  Node<HashBlock>* ptr;
+
+  this->table[hash]->for_each([&](Node<HashBlock>* node) -> void {
+    if (node->data.key == key) {
+      ptr = node;
+    }
+  });
+
+  this->table[hash]->remove_node(ptr);
 }
 
 void Common::HashTable::for_each(std::function<void(HashBlock, int)> callback) {

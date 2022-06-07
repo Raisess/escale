@@ -28,6 +28,11 @@ template<typename T>
 void Common::LinkedList<T>::remove_node(Node<T>* ptr) {
   Node<T>* tmp = this->head;
 
+  if (this->head == ptr) {
+    this->head = this->head->next;
+    return;
+  }
+
   while (tmp != NULL) {
     if (tmp->next == ptr) {
       tmp->next = tmp->next->next;

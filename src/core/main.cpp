@@ -16,6 +16,8 @@ int main() {
   std::cout << "Danilo: " << cache->get("Danilo") << std::endl;
 
   cache->remove("A random key");
+  cache->remove("Test");
+  cache->remove("Danilo");
 
   std::cout << "A random key: " << cache->get("A random key") << " | ttl: " << cache->ttl("A random key") << std::endl;
   std::cout << "Key: " << cache->get("Key") << std::endl;

@@ -9,8 +9,9 @@ class Cache {
 public:
   Cache();
 
-  void set(std::string key, std::string value);
+  void set(std::string key, std::string value, unsigned int ttl_sec);
   std::string get(std::string key);
+  unsigned int ttl(std::string key);
   void save_on_disk();
   void read_from_disk();
 

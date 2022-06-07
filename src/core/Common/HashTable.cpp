@@ -18,9 +18,9 @@ unsigned int Common::HashTable::hash(std::string key) {
   return hash;
 }
 
-void Common::HashTable::append(std::string key, std::string value) {
+void Common::HashTable::append(std::string key, std::string value, unsigned long int duration) {
   unsigned int hash = this->hash(key);
-  this->table[hash]->create_node({ key, value });
+  this->table[hash]->create_node({ key, value, time(nullptr) + duration });
 }
 
 void Common::HashTable::for_each(std::function<void(HashBlock, int)> callback) {

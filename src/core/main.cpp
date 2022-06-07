@@ -5,9 +5,9 @@ int main() {
   Cache* cache = new Cache();
 
   cache->read_from_disk();
-  cache->set("A random key", "A random value");
+  cache->set("A random key", "A random value", 10);
 
-  std::cout << "A random key: " << cache->get("A random key") << std::endl;
+  std::cout << "A random key: " << cache->get("A random key") << " | ttl: " << cache->ttl("A random key") << std::endl;
   std::cout << "Key: " << cache->get("Key") << std::endl;
   std::cout << "Key2: " << cache->get("Key2") << std::endl;
   std::cout << "Test: " << cache->get("Test") << std::endl;

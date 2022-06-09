@@ -3,5 +3,5 @@
 typedef struct HashBlock {
   std::string key;
   std::string value;
-  unsigned long int duration;
+  long int duration;
 } HashBlock;

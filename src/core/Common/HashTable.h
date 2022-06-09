@@ -13,7 +13,7 @@ class HashTable {
 public:
   HashTable();
 
-  void append(std::string key, std::string value, unsigned long int duration);
+  void append(std::string key, std::string value, const long int duration);
   void remove(std::string key);
   void for_each(std::function<void(HashBlock, int)> callback);
   HashBlock find(std::string key);

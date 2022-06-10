@@ -2,18 +2,28 @@ CC=g++
 FLAGS=-Wno-deprecated
 
 SRC_DIR=./src
-SRC_FILES=$(SRC_DIR)/core/main.cpp \
-					$(SRC_DIR)/core/Cache.cpp \
-					$(SRC_DIR)/core/File.cpp \
-					$(SRC_DIR)/core/Common/LinkedList.cpp \
-					$(SRC_DIR)/core/Common/HashTable.cpp
+SRC_FILES=$(SRC_DIR)/Common/LinkedList.cpp \
+					$(SRC_DIR)/Common/HashTable.cpp \
+					$(SRC_DIR)/Cache.cpp \
+					$(SRC_DIR)/File.cpp \
+
+SERVER_FILES=$(SRC_FILES) \
+						 $(SRC_DIR)/Socket.cpp \
+						 $(SRC_DIR)/server.cpp
+
+TEST_FILES=$(SRC_FILES) \
+					$(SRC_DIR)/main.cpp
 
 OUT_DIR=./build
 OUT_FILE=$(OUT_DIR)/escale
 
 build:
 	mkdir -p $(OUT_DIR)
-	$(CC) $(FLAGS) $(SRC_FILES) -o $(OUT_FILE)
+	$(CC) $(FLAGS) $(SERVER_FILES) -o $(OUT_FILE)
+
+build_test:
+	mkdir -p $(OUT_DIR)
+	$(CC) $(FLAGS) $(TEST_FILES) -o $(OUT_DIR)/test
 
 clean:
 	rm -rf $(OUT_DIR)

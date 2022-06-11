@@ -6,16 +6,15 @@ Cache::Cache() {
   this->file = new File(CACHE_FILE);
 }
 
-void Cache::set(std::string key, std::string value, unsigned int ttl_sec) {
+void Cache::set(std::string key, std::string value, unsigned int ttl_sec) const {
   this->hash_table->append(key, value, ttl_sec);
 }
 
-std::string Cache::get(std::string key) {
-  HashBlock hash_block = this->hash_table->find(key);
-  return hash_block.value;
+std::string Cache::get(std::string key) const {
+  return this->hash_table->find(key).value;
 }
 
-void Cache::remove(std::string key) {
+void Cache::remove(std::string key) const {
   this->hash_table->remove(key);
 }
 

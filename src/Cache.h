@@ -8,6 +8,7 @@
 class Cache {
 public:
   Cache();
+  ~Cache();
 
   void set(std::string key, std::string value, unsigned int ttl_sec) const;
   std::string get(std::string key) const;

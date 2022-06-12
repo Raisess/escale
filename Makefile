@@ -9,7 +9,7 @@ SRC_FILES=$(SRC_DIR)/Common/LinkedList.cpp \
 					$(SRC_DIR)/main.cpp
 
 OUT_DIR=./build
-OUT_FILE=$(OUT_DIR)/escale
+OUT_FILE=$(OUT_DIR)/escale.o
 
 build:
 	mkdir -p $(OUT_DIR)

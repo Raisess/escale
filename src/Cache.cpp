@@ -6,6 +6,15 @@ Cache::Cache() {
   this->file = new File(CACHE_FILE);
 }
 
+Cache* Cache::unique_instance = NULL;
+Cache* Cache::SingleInstance() {
+  if (Cache::unique_instance == NULL) {
+    Cache::unique_instance = new Cache();
+  }
+
+  return Cache::unique_instance;
+}
+
 void Cache::set(std::string key, std::string value, unsigned int ttl_sec) const {
   this->hash_table->append(key, value, ttl_sec);
 }

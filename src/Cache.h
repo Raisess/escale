@@ -10,6 +10,8 @@ public:
   Cache();
   ~Cache();
 
+  static Cache* SingleInstance();
+
   void set(std::string key, std::string value, unsigned int ttl_sec) const;
   std::string get(std::string key) const;
   void remove(std::string key) const;
@@ -18,6 +20,7 @@ public:
   void read_from_disk();
 
 private:
+  static Cache* unique_instance;
   Common::HashTable* hash_table;
   File* file;
 };

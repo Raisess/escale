@@ -27,5 +27,14 @@ int main() {
   std::cout << "Diff: " << cache->get("Diff") << std::endl;
   std::cout << "Danilo: " << cache->get("Danilo") << std::endl;
 
+  Cache* cache_two = Cache::SingleInstance();
+
+  cache_two->set("Unique key", "Unique value", 10);
+  std::cout << "Unique key: " << cache_two->get("Unique key") << std::endl;
+
+  Cache* cache_tree = Cache::SingleInstance();
+
+  std::cout << "Unique key: " << cache_tree->get("Unique key") << std::endl;
+
   return 0;
 }

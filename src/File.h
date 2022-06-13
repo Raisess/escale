@@ -9,6 +9,7 @@ public:
   File(std::string path) {
     this->path = path;
   }
+  ~File() {}
 
   std::string read();
   void write(std::string data);

@@ -12,7 +12,11 @@ namespace Common {
 class HashTable {
 public:
   HashTable();
-  ~HashTable();
+  ~HashTable() {
+    for (int i = 0; i < TABLE_SIZE; i++) {
+      delete this->table[i];
+    }
+  }
 
   void append(std::string key, std::string value, const long int duration);
   void remove(std::string key);

@@ -31,7 +31,7 @@ void Common::LinkedList<T>::remove_node(Node<T>* ptr) {
   if (this->head == ptr) {
     Node<T>* curr = this->head;
     this->head = this->head->next;
-    free(curr);
+    delete curr;
     return;
   }
 
@@ -39,7 +39,7 @@ void Common::LinkedList<T>::remove_node(Node<T>* ptr) {
     if (tmp->next == ptr) {
       Node<T>* curr = tmp->next;
       tmp->next = tmp->next->next;
-      free(curr);
+      delete curr;
       return;
     }
 

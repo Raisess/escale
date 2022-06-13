@@ -12,7 +12,7 @@ namespace Common {
 class HashTable {
 public:
   HashTable();
-  ~HashTable();
+  ~HashTable() {}
 
   void append(std::string key, std::string value, const long int duration);
   void remove(std::string key);

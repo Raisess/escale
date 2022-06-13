@@ -14,7 +14,7 @@ public:
   Node(T data) {
     this->data = data;
   }
-  ~Node();
+  ~Node() {}
 };
 
 template<typename T>

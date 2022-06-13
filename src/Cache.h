@@ -8,7 +8,7 @@
 class Cache {
 public:
   Cache();
-  ~Cache();
+  ~Cache() {}
 
   static Cache* SingleInstance();
 

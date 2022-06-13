@@ -29,13 +29,17 @@ void Common::LinkedList<T>::remove_node(Node<T>* ptr) {
   Node<T>* tmp = this->head;
 
   if (this->head == ptr) {
+    Node<T>* curr = this->head;
     this->head = this->head->next;
+    delete curr;
     return;
   }
 
   while (tmp != NULL) {
     if (tmp->next == ptr) {
+      Node<T>* curr = tmp->next;
       tmp->next = tmp->next->next;
+      delete curr;
       return;
     }
 

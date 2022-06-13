@@ -8,7 +8,10 @@
 class Cache {
 public:
   Cache();
-  ~Cache() {}
+  ~Cache() {
+    delete this->hash_table;
+    delete this->file;
+  }
 
   static Cache* SingleInstance();
 

@@ -6,7 +6,7 @@ Common::HashTable::HashTable() {
   }
 }
 
-unsigned int Common::HashTable::hash(std::string key) {
+unsigned int Common::HashTable::hash(const std::string& key) {
   unsigned int hash = 0;
 
   for (int i = 0; i < key.size(); i++) {
@@ -18,12 +18,12 @@ unsigned int Common::HashTable::hash(std::string key) {
   return hash;
 }
 
-void Common::HashTable::append(std::string key, std::string value, const long int duration) {
+void Common::HashTable::append(const std::string& key, const std::string& value, const long int duration) {
   unsigned int hash = this->hash(key);
   this->table[hash]->create_node({ key, value, time(NULL) + duration });
 }
 
-void Common::HashTable::remove(std::string key) {
+void Common::HashTable::remove(const std::string& key) {
   unsigned int hash = this->hash(key);
 
   this->table[hash]->for_each([&](Node<HashBlock>* node) -> void {
@@ -33,7 +33,7 @@ void Common::HashTable::remove(std::string key) {
   });
 }
 
-void Common::HashTable::for_each(std::function<void(HashBlock, int)> callback) {
+void Common::HashTable::for_each(std::function<void(HashBlock&, int)> callback) {
   for (int i = 0; i < TABLE_SIZE; i++) {
     this->table[i]->for_each([&](Node<HashBlock>* node) -> void {
       callback(node->data, i);
@@ -41,7 +41,7 @@ void Common::HashTable::for_each(std::function<void(HashBlock, int)> callback) {
   }
 }
 
-HashBlock Common::HashTable::find(std::string key) {
+HashBlock Common::HashTable::find(const std::string& key) {
   unsigned int hash = this->hash(key);
   HashBlock hash_block;
 

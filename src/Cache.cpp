@@ -15,19 +15,19 @@ Cache* Cache::SingleInstance() {
   return Cache::unique_instance;
 }
 
-void Cache::set(const std::string key, const std::string value, const unsigned int ttl_sec) const {
+void Cache::set(const std::string& key, const std::string& value, const unsigned int ttl_sec) const {
   this->hash_table->append(key, value, ttl_sec);
 }
 
-const std::string Cache::get(const std::string key) const {
+const std::string Cache::get(const std::string& key) const {
   return this->hash_table->find(key).value;
 }
 
-void Cache::remove(const std::string key) const {
+void Cache::remove(const std::string& key) const {
   this->hash_table->remove(key);
 }
 
-unsigned long int Cache::ttl(const std::string key) {
+unsigned long int Cache::ttl(const std::string& key) {
   HashBlock hash_block = this->hash_table->find(key);
 
   if (hash_block.key == "") {

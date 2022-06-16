@@ -6,7 +6,7 @@ template class Common::LinkedList<std::string>;
 template class Common::LinkedList<HashBlock>;
 
 template<typename T>
-Common::Node<T>* Common::LinkedList<T>::create_node(T data) {
+Common::Node<T>* Common::LinkedList<T>::create_node(const T& data) {
   Node<T>* node = new Node<T>(data);
 
   if (this->head != NULL) {

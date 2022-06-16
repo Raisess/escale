@@ -18,15 +18,15 @@ public:
     }
   }
 
-  void append(std::string key, std::string value, const long int duration);
-  void remove(std::string key);
-  void for_each(std::function<void(HashBlock, int)> callback);
-  HashBlock find(std::string key);
+  void append(const std::string& key, const std::string& value, const long int duration);
+  void remove(const std::string& key);
+  void for_each(std::function<void(HashBlock&, int)> callback);
+  HashBlock find(const std::string& key);
 
 private:
   LinkedList<HashBlock>* table[TABLE_SIZE] = {};
 
-  unsigned int hash(std::string key);
+  unsigned int hash(const std::string& key);
 };
 
 }

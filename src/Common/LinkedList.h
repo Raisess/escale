@@ -25,7 +25,7 @@ public:
     delete this->head;
   }
 
-  Node<T>* create_node(T data);
+  Node<T>* create_node(const T& data);
   void remove_node(Node<T>* ptr);
   void for_each(std::function<void(Node<T>*)> callback);
 

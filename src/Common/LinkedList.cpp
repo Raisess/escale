@@ -5,21 +5,12 @@ template class Common::LinkedList<int>;
 template class Common::LinkedList<std::string>;
 template class Common::LinkedList<HashBlock>;
 
+// Inverse linked list insertion, blazeling fast
 template<typename T>
 Common::Node<T>* Common::LinkedList<T>::create_node(const T& data) {
   Node<T>* node = new Node<T>(data);
-
-  if (this->head != NULL) {
-    Node<T>* tmp = this->head;
-
-    while (tmp->next != NULL) {
-      tmp = tmp->next;
-    }
-
-    tmp->next = node;
-  } else {
-    this->head = node;
-  }
+  node->next = this->head;
+  this->head = node;
 
   return node;
 }

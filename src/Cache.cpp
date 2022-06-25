@@ -20,8 +20,14 @@ void Cache::set(const std::string& key, const std::string& value, const unsigned
   this->hash_table->append(key, value, ttl_sec);
 }
 
-const std::string Cache::get(const std::string& key) const {
-  return this->hash_table->find(key).value;
+const std::string Cache::get(const std::string& key) {
+  HashBlock block = this->hash_table->find(key);
+
+  if (this->ttl(key) <= 0) {
+    return "";
+  }
+
+  return block.value;
 }
 
 void Cache::remove(const std::string& key) const {

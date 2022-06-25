@@ -1,5 +1,6 @@
 #pragma once
 
+#include <mutex>
 #include "./Common/HashTable.h"
 #include "File.h"
 
@@ -23,6 +24,9 @@ public:
   void read_from_disk();
 
 private:
+  mutable std::mutex set_lock;
+  mutable std::mutex sod_lock;
+
   static Cache* unique_instance;
   Common::HashTable* hash_table;
   File* file;

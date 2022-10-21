@@ -20,7 +20,7 @@ unsigned int Common::HashTable::hash(const std::string& key) {
 
 void Common::HashTable::append(const std::string& key, const std::string& value, const long int duration) {
   unsigned int hash = this->hash(key);
-  this->table[hash]->create_node({ key, value, time(NULL) + duration });
+  this->table[hash]->create_node({ key, value, time(nullptr) + duration });
 }
 
 void Common::HashTable::remove(const std::string& key) {

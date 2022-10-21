@@ -1,18 +1,18 @@
 #include <regex>
 #include "Cache.h"
 
-Cache::Cache() {
-  this->hash_table = new Common::HashTable();
-  this->file = new File(CACHE_FILE);
-}
+Cache::Cache()
+  : hash_table(std::make_unique<Common::HashTable>()), file(std::make_unique<File>(CACHE_FILE)) {}
 
-Cache* Cache::unique_instance = NULL;
-Cache* Cache::SingleInstance() {
-  if (Cache::unique_instance == NULL) {
-    Cache::unique_instance = new Cache();
+Cache::~Cache() {}
+
+std::shared_ptr<Cache> Cache::Instance = nullptr;
+std::shared_ptr<Cache> Cache::SingleInstance() {
+  if (Cache::Instance == nullptr) {
+    Cache::Instance = std::make_shared<Cache>();
   }
 
-  return Cache::unique_instance;
+  return Cache::Instance;
 }
 
 void Cache::set(const std::string& key, const std::string& value, const unsigned int ttl_sec) const {
@@ -41,7 +41,7 @@ unsigned long int Cache::ttl(const std::string& key) {
     return 0;
   }
 
-  long int ttl = hash_block.duration - time(NULL);
+  long int ttl = hash_block.duration - time(nullptr);
 
   if (ttl <= 0) {
     this->hash_table->remove(key);
@@ -75,7 +75,7 @@ void Cache::read_from_disk() {
       key = tmp;
       tmp = "";
     } else if (ttl_sec == -1 && std::regex_match(cchar, std::regex("\\|"))) {
-      ttl_sec = (long int) tmp.c_str() - time(NULL);
+      ttl_sec = (long int) tmp.c_str() - time(nullptr);
       tmp = "";
     } else if (tmp != "" && std::regex_match(cchar, std::regex("\\n"))) {
       value = tmp;

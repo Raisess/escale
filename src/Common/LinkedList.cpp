@@ -26,7 +26,7 @@ void Common::LinkedList<T>::remove_node(Node<T>* ptr) {
     return;
   }
 
-  while (tmp != NULL) {
+  while (tmp != nullptr) {
     if (tmp->next == ptr) {
       Node<T>* curr = tmp->next;
       tmp->next = tmp->next->next;
@@ -42,7 +42,7 @@ template<typename T>
 void Common::LinkedList<T>::for_each(std::function<void(Node<T>*)> callback) {
   Node<T>* tmp = this->head;
 
-  while (tmp != NULL) { 
+  while (tmp != nullptr) { 
     callback(tmp);
     tmp = tmp->next;
   }

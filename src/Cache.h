@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <mutex>
 #include "./Common/HashTable.h"
 #include "File.h"
@@ -9,12 +10,9 @@
 class Cache {
 public:
   Cache();
-  ~Cache() {
-    delete this->hash_table;
-    delete this->file;
-  }
+  ~Cache();
 
-  static Cache* SingleInstance();
+  static std::shared_ptr<Cache> SingleInstance();
 
   void set(const std::string& key, const std::string& value, const unsigned int ttl_sec) const;
   const std::string get(const std::string& key);
@@ -27,7 +25,7 @@ private:
   mutable std::mutex set_lock;
   mutable std::mutex sod_lock;
 
-  static Cache* unique_instance;
-  Common::HashTable* hash_table;
-  File* file;
+  static std::shared_ptr<Cache> Instance;
+  std::unique_ptr<Common::HashTable> hash_table = nullptr;
+  std::unique_ptr<File> file = nullptr;
 };

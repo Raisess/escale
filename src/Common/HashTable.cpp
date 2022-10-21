@@ -29,6 +29,7 @@ void Common::HashTable::remove(const std::string& key) {
   this->table[hash]->for_each([&](Node<HashBlock>* node) -> void {
     if (node->data.key == key) {
       this->table[hash]->remove_node(node);
+      return;
     }
   });
 }
@@ -48,6 +49,7 @@ HashBlock Common::HashTable::find(const std::string& key) {
   this->table[hash]->for_each([&](Node<HashBlock>* node) -> void {
     if (node->data.key == key) {
       hash_block = node->data;
+      return;
     }
   });
 

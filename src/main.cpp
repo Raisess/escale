@@ -19,6 +19,11 @@ int main() {
   std::cout << "A random key: " << cache.get("A random key") << " | ttl: " << cache.ttl("A random key") << std::endl;
   std::cout << "Test: " << cache.get("Test") << std::endl;
 
+  cache.read_from_disk();
+
+  std::cout << "A random key: " << cache.get("A random key") << " | ttl: " << cache.ttl("A random key") << std::endl;
+  std::cout << "Test: " << cache.get("Test") << std::endl;
+
   auto cache_two = Cache::SingleInstance();
 
   cache_two->set("Unique key", "Unique value", 10);

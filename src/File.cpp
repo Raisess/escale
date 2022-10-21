@@ -1,22 +1,26 @@
 #include "File.h"
 
+File::File(const std::string& path) : path(path) {}
+
+File::~File() {}
+
 std::string File::read() {
   this->rfstream.open(this->path);
 
-  std::ostrstream data;
+  std::string data;
   std::string tmp;
 
   while (std::getline(this->rfstream, tmp)){
-    data << tmp << "\n";
+    data += tmp + "\n";
   }
 
   this->rfstream.close();
 
-  return data.str();
+  return data;
 
 }
 
-void File::write(std::string data) {
+void File::write(const std::string& data) {
   this->wfstream.open(this->path);
   this->wfstream << data << "\n";
   this->wfstream.close();

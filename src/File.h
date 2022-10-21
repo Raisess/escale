@@ -2,17 +2,14 @@
 
 #include <iostream>
 #include <fstream>
-#include <strstream>
 
 class File {
 public:
-  File(std::string path) {
-    this->path = path;
-  }
-  ~File() {}
+  File(const std::string& path);
+  ~File();
 
   std::string read();
-  void write(std::string data);
+  void write(const std::string&);
 
 private:
   std::string path;

@@ -44,6 +44,7 @@ unsigned long int Cache::ttl(const std::string& key) {
   long int ttl = hash_block.duration - time(nullptr);
 
   if (ttl <= 0) {
+    ttl = 0;
     this->hash_table->remove(key);
   }
 
